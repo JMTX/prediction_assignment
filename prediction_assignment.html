@@ -384,9 +384,10 @@ $(document).ready(function () {
 <div id="synopsis" class="section level2">
 <h2>Synopsis</h2>
 <p>In this assignment, the goal was to find a robust method to predict which physical activity the user was doing from different measures detected on a smartphone. We tested several models like a decision tree, logistical regression, a combination of these both models but the method which provides the best accuracy (0.99) was the random forest model.</p>
-<p>a few comments: - The “out-of-sample accuracy” of the methods were evaluated using a validation set separated from the train set to select the best method. Indeed the “out-of-sample accuracy” seems to me a more suitable way to evaluate methods for a classification task than using “out-of-sample error”.</p>
+<p>a few comments:</p>
 <ul>
-<li>All models were fitted using a 4 folds cross validation.</li>
+<li><p>The “out-of-sample accuracy” of the methods were evaluated using a validation set separated from the train set to select the best method. Indeed the “out-of-sample accuracy” seems to me a more suitable way to evaluate methods for a classification task than using “out-of-sample error”.</p></li>
+<li><p>All models were fitted using a 4 folds cross validation.</p></li>
 </ul>
 </div>
 <div id="cleaning-the-data" class="section level2">
@@ -446,7 +447,7 @@ model_fit1 &lt;- train(classe ~ ., data=train_set, method=&quot;rpart&quot;, trC
 model_pred_train1 &lt;- predict(model_fit1, train_set)
 in_sample_accuracy1 = sum(train_set$classe==model_pred_train1)/length(model_pred_train1)
 in_sample_accuracy1</code></pre>
-<pre><code>## [1] 0.4953119</code></pre>
+<pre><code>## [1] 0.496399</code></pre>
 <pre class="r"><code>#compute the prediction of this model on the validation set and compute the confusion matrix
 model_pred1 &lt;- predict(model_fit1, validation_set)
 out_sample_accuracy1 = sum(validation_set$classe==model_pred1)/length(model_pred1)
@@ -455,35 +456,35 @@ confusionMatrix(validation_set$classe, model_pred1)</code></pre>
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1269   17  105    0    4
-##          B  387  320  242    0    0
-##          C  393   26  436    0    0
-##          D  357  140  307    0    0
-##          E  142  114  236    0  409
+##          A 1264   21  104    0    6
+##          B  409  301  239    0    0
+##          C  403   24  428    0    0
+##          D  377  140  287    0    0
+##          E  132  117  227    0  425
 ## 
 ## Overall Statistics
-##                                           
-##                Accuracy : 0.4963          
-##                  95% CI : (0.4822, 0.5104)
-##     No Information Rate : 0.5196          
-##     P-Value [Acc &gt; NIR] : 0.9995          
-##                                           
-##                   Kappa : 0.3418          
-##                                           
-##  Mcnemar&#39;s Test P-Value : NA              
+##                                          
+##                Accuracy : 0.4931         
+##                  95% CI : (0.479, 0.5072)
+##     No Information Rate : 0.5271         
+##     P-Value [Acc &gt; NIR] : 1              
+##                                          
+##                   Kappa : 0.3368         
+##                                          
+##  Mcnemar&#39;s Test P-Value : NA             
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.4980  0.51864  0.32881       NA  0.99031
-## Specificity            0.9465  0.85328  0.88290   0.8361  0.89045
-## Pos Pred Value         0.9097  0.33720  0.50994       NA  0.45394
-## Neg Pred Value         0.6355  0.92491  0.78019       NA  0.99900
-## Prevalence             0.5196  0.12582  0.27039   0.0000  0.08422
-## Detection Rate         0.2588  0.06525  0.08891   0.0000  0.08340
+## Sensitivity            0.4890  0.49917  0.33307       NA  0.98608
+## Specificity            0.9435  0.84934  0.88201   0.8361  0.89358
+## Pos Pred Value         0.9061  0.31718  0.50058       NA  0.47170
+## Neg Pred Value         0.6235  0.92364  0.78834       NA  0.99850
+## Prevalence             0.5271  0.12296  0.26203   0.0000  0.08789
+## Detection Rate         0.2577  0.06138  0.08728   0.0000  0.08666
 ## Detection Prevalence   0.2845  0.19352  0.17435   0.1639  0.18373
-## Balanced Accuracy      0.7223  0.68596  0.60585       NA  0.94038</code></pre>
-<p>This fist model obtain an out-of-sample accuracy of 0.4963295 which is not really good. At least this model, does not overfit the data because the in-sample (0.4953119) and out-of-sample (0.4963295) accuracy are pretty similar.</p>
+## Balanced Accuracy      0.7162  0.67425  0.60754       NA  0.93983</code></pre>
+<p>This fist model obtain an out-of-sample accuracy of 0.4930669 which is not really good. At least this model, does not overfit the data because the in-sample (0.496399) and out-of-sample (0.4930669) accuracy are pretty similar.</p>
 </div>
 <div id="the-logistical-regression-model" class="section level1">
 <h1>the logistical regression model</h1>
@@ -495,7 +496,7 @@ model_fit2 &lt;- train(classe ~ ., data=train_set, method=&quot;multinom&quot;,
 model_pred_train2 &lt;- predict(model_fit2, train_set)
 in_sample_accuracy2 = sum(train_set$classe==model_pred_train2)/length(model_pred_train2)
 in_sample_accuracy2</code></pre>
-<pre><code>## [1] 0.6784889</code></pre>
+<pre><code>## [1] 0.6724419</code></pre>
 <pre class="r"><code>#compute the prediction of this model on the validation set and compute the confusion matrix
 model_pred2 &lt;- predict(model_fit2, validation_set)
 out_sample_accuracy2 = sum(validation_set$classe==model_pred2)/length(model_pred2)
@@ -504,35 +505,35 @@ confusionMatrix(validation_set$classe, model_pred2)</code></pre>
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1214   35   47   78   21
-##          B  147  512  105   42  143
-##          C  158   77  531   53   36
-##          D  102   26   87  540   49
-##          E   82  114   60  110  535
+##          A 1163   34   82  107    9
+##          B  142  548   73   78  108
+##          C  129  102  501   77   46
+##          D   92   22   84  570   36
+##          E   59  111   55  150  526
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.6794          
-##                  95% CI : (0.6662, 0.6925)
-##     No Information Rate : 0.3473          
+##                Accuracy : 0.6746          
+##                  95% CI : (0.6612, 0.6877)
+##     No Information Rate : 0.3232          
 ##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
 ##                                           
-##                   Kappa : 0.5915          
+##                   Kappa : 0.5868          
 ##                                           
 ##  Mcnemar&#39;s Test P-Value : &lt; 2.2e-16       
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.7129   0.6702   0.6398   0.6561   0.6824
-## Specificity            0.9435   0.8944   0.9205   0.9353   0.9112
-## Pos Pred Value         0.8703   0.5395   0.6211   0.6716   0.5938
-## Neg Pred Value         0.8606   0.9363   0.9262   0.9310   0.9378
-## Prevalence             0.3473   0.1558   0.1692   0.1678   0.1599
-## Detection Rate         0.2476   0.1044   0.1083   0.1101   0.1091
+## Sensitivity            0.7338   0.6707   0.6302   0.5804   0.7255
+## Specificity            0.9301   0.9019   0.9138   0.9403   0.9103
+## Pos Pred Value         0.8337   0.5774   0.5860   0.7090   0.5838
+## Neg Pred Value         0.8797   0.9320   0.9274   0.8995   0.9503
+## Prevalence             0.3232   0.1666   0.1621   0.2002   0.1478
+## Detection Rate         0.2372   0.1117   0.1022   0.1162   0.1073
 ## Detection Prevalence   0.2845   0.1935   0.1743   0.1639   0.1837
-## Balanced Accuracy      0.8282   0.7823   0.7801   0.7957   0.7968</code></pre>
-<p>This second model (logistic regression ) obtain an out-of-sample accuracy of 0.6794454 which is better than the first one but not good enough for our problem. As the first model, the second one does not overfit the training data because the in-sample (0.6784889) and out-of-sample (0.6794454) accuracy are pretty similar.</p>
+## Balanced Accuracy      0.8319   0.7863   0.7720   0.7604   0.8179</code></pre>
+<p>This second model (logistic regression ) obtain an out-of-sample accuracy of 0.6745514 which is better than the first one but not good enough for our problem. As the first model, the second one does not overfit the training data because the in-sample (0.6724419) and out-of-sample (0.6745514) accuracy are pretty similar.</p>
 </div>
 <div id="stacking-both-precedent-models" class="section level1">
 <h1>Stacking both precedent models</h1>
@@ -552,7 +553,7 @@ model_stack &lt;- train(classe~.,method=&quot;multinom&quot;,data=pred_data, trC
 model_pred_train_stack &lt;- predict(model_stack, pred_data)
 in_sample_accuracy_stack = sum(train_set$classe==model_pred_train_stack)/length(model_pred_train_stack)
 in_sample_accuracy_stack</code></pre>
-<pre><code>## [1] 0.6911945</code></pre>
+<pre><code>## [1] 0.6926892</code></pre>
 <pre class="r"><code>#4) create a dataframe of prediction on the validation test 
 pred_data_val &lt;- data.frame(model_pred_train1= model_pred1,model_pred_train2=model_pred2,classe=validation_set$classe)
 pred_stack &lt;- predict(model_stack,pred_data_val)
@@ -563,35 +564,35 @@ confusionMatrix(validation_set$classe, pred_stack)</code></pre>
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1211   40   46   78   20
-##          B  147  551  105   42  104
-##          C  158   80  531   53   33
-##          D  102   39   87  540   36
-##          E   59  152   33   97  560
+##          A 1149   48   76  107   15
+##          B  135  555   73   78  108
+##          C  124  107  501   77   46
+##          D   92   22   84  570   36
+##          E   38   99   19  104  641
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.6919          
-##                  95% CI : (0.6787, 0.7048)
-##     No Information Rate : 0.342           
+##                Accuracy : 0.6966          
+##                  95% CI : (0.6835, 0.7094)
+##     No Information Rate : 0.3136          
 ##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
 ##                                           
-##                   Kappa : 0.6074          
+##                   Kappa : 0.6151          
 ##                                           
 ##  Mcnemar&#39;s Test P-Value : &lt; 2.2e-16       
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.7221   0.6392   0.6621   0.6667   0.7437
-## Specificity            0.9430   0.9015   0.9210   0.9355   0.9179
-## Pos Pred Value         0.8681   0.5806   0.6211   0.6716   0.6215
-## Neg Pred Value         0.8672   0.9214   0.9331   0.9341   0.9518
-## Prevalence             0.3420   0.1758   0.1635   0.1652   0.1535
-## Detection Rate         0.2469   0.1124   0.1083   0.1101   0.1142
+## Sensitivity            0.7471   0.6679   0.6653   0.6090   0.7577
+## Specificity            0.9269   0.9033   0.9147   0.9410   0.9359
+## Pos Pred Value         0.8237   0.5848   0.5860   0.7090   0.7114
+## Neg Pred Value         0.8891   0.9302   0.9378   0.9107   0.9488
+## Prevalence             0.3136   0.1695   0.1535   0.1909   0.1725
+## Detection Rate         0.2343   0.1132   0.1022   0.1162   0.1307
 ## Detection Prevalence   0.2845   0.1935   0.1743   0.1639   0.1837
-## Balanced Accuracy      0.8326   0.7704   0.7916   0.8011   0.8308</code></pre>
-<p>This stacked model (logistic regression + tree decision ) obtain an out-of-sample accuracy of 0.6918842 which is just slitly better than the second one but not nearly as good as we need for our problem. One more time, this model does not overfit the training data because the in-sample (0.6911945) and out-of-sample (0.6918842) accuracy are pretty similar.</p>
+## Balanced Accuracy      0.8370   0.7856   0.7900   0.7750   0.8468</code></pre>
+<p>This stacked model (logistic regression + tree decision ) obtain an out-of-sample accuracy of 0.6965742 which is just slitly better than the second one but not nearly as good as we need for our problem. One more time, this model does not overfit the training data because the in-sample (0.6926892) and out-of-sample (0.6965742) accuracy are pretty similar.</p>
 <pre class="r"><code>summary(cars)</code></pre>
 <pre><code>##      speed           dist       
 ##  Min.   : 4.0   Min.   :  2.00  
@@ -620,38 +621,38 @@ confusionMatrix(validation_set$classe, model_pred4)</code></pre>
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1393    2    0    0    0
+##          A 1394    0    0    0    1
 ##          B    2  946    1    0    0
-##          C    0    3  851    1    0
-##          D    0    0   19  785    0
-##          E    0    0    0    0  901
+##          C    0    2  851    2    0
+##          D    0    0   10  793    1
+##          E    0    0    1    3  897
 ## 
 ## Overall Statistics
-##                                           
-##                Accuracy : 0.9943          
-##                  95% CI : (0.9918, 0.9962)
-##     No Information Rate : 0.2845          
-##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
-##                                           
-##                   Kappa : 0.9928          
-##                                           
-##  Mcnemar&#39;s Test P-Value : NA              
+##                                         
+##                Accuracy : 0.9953        
+##                  95% CI : (0.993, 0.997)
+##     No Information Rate : 0.2847        
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16     
+##                                         
+##                   Kappa : 0.9941        
+##                                         
+##  Mcnemar&#39;s Test P-Value : NA            
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9986   0.9947   0.9770   0.9987   1.0000
-## Specificity            0.9994   0.9992   0.9990   0.9954   1.0000
-## Pos Pred Value         0.9986   0.9968   0.9953   0.9764   1.0000
-## Neg Pred Value         0.9994   0.9987   0.9951   0.9998   1.0000
-## Prevalence             0.2845   0.1939   0.1776   0.1603   0.1837
-## Detection Rate         0.2841   0.1929   0.1735   0.1601   0.1837
+## Sensitivity            0.9986   0.9979   0.9861   0.9937   0.9978
+## Specificity            0.9997   0.9992   0.9990   0.9973   0.9990
+## Pos Pred Value         0.9993   0.9968   0.9953   0.9863   0.9956
+## Neg Pred Value         0.9994   0.9995   0.9970   0.9988   0.9995
+## Prevalence             0.2847   0.1933   0.1760   0.1627   0.1833
+## Detection Rate         0.2843   0.1929   0.1735   0.1617   0.1829
 ## Detection Prevalence   0.2845   0.1935   0.1743   0.1639   0.1837
-## Balanced Accuracy      0.9990   0.9970   0.9880   0.9971   1.0000</code></pre>
-<p>This random forest model obtain an out-of-sample accuracy of 0.9942904 which is really great and largely better than all the other models that we’ve tested in the previous sections. Indeed the confusion matrix seems really nice too, nearly a diagonal matrix. As for the other models, this one does not overfit the training data because the in-sample (1) and out-of-sample (0.9942904) accuracy are pretty similar.</p>
+## Balanced Accuracy      0.9991   0.9986   0.9926   0.9955   0.9984</code></pre>
+<p>This random forest model obtain an out-of-sample accuracy of 0.99531 which is really great and largely better than all the other models that we’ve tested in the previous sections. Indeed the confusion matrix seems really nice too, nearly a diagonal matrix. As for the other models, this one does not overfit the training data because the in-sample (1) and out-of-sample (0.99531) accuracy are pretty similar.</p>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>We’ve tested several models to predict activities from the Human Activity project data and the best model was the random forest obtaining an out of sample precision of (0.9942904). Thus we advised to use this model for this problem.</p>
+<p>We’ve tested several models to predict activities from the Human Activity project data and the best model was the random forest obtaining an out of sample precision of (0.99531). Thus we advised to use this model for this problem.</p>
 </div>
 </div>
 

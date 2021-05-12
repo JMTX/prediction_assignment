@@ -2,7 +2,9 @@
 title: "Prediction_assignment"
 author: "JMTX"
 date: "25 avril 2021"
-output: html_document
+output:
+  html_document:
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
 In this assignment, the goal was to find a robust method to predict which physical activity the user was doing from different measures detected on a smartphone. We tested several models like a decision tree, logistical regression, a combination of these both models but the method which provides the best accuracy (0.99) was the random forest model.
 
 a few comments: 
--  The "out-of-sample accuracy" of the methods were evaluated using a validation set separated from the train set to select the best method. Indeed the "out-of-sample accuracy" seems to me a more suitable way to evaluate methods for a classification task than using "out-of-sample error". 
+
+- The "out-of-sample accuracy" of the methods were evaluated using a validation set separated from the train set to select the best method. Indeed the "out-of-sample accuracy" seems to me a more suitable way to evaluate methods for a classification task than using "out-of-sample error". 
 
 - All models were fitted using a 4 folds cross validation.
 
